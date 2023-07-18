@@ -1,0 +1,36 @@
+﻿@using Entities
+@using Services
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha Creacion</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in services)
+        {
+            <tr>
+                <td>@item.ServicioId</td>
+                <td>@item.NommbreServicio</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.DescripcionServicio</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    List<ServicesEntity> services = new List<ServicesEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        services = S_Services.ListaServicios();
+    }
+}
